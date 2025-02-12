@@ -1,0 +1,14 @@
+{
+    "name": "twofourxx",
+    "title": "24XX",
+    "description": "A FoundryVTT System for running 24XX games.",
+    "version": "0.0.1",
+    "author": "Michael Spellecacy",
+    "esmodules": ["./module/twofourxx.js"],
+    "scripts": [],
+    "compatibility": {
+        "minimum": 12,
+        "verified": 12
+    }
+}
+
