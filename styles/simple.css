@@ -1,0 +1,333 @@
+.twofourxx {
+  /* Sheet Tabs */
+  /* Items List */
+  /* Attributes */
+}
+.twofourxx .input-group {
+  width: 100%;
+  max-width: 20em;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+@supports (mix-blend-mode: darken) {
+  .twofourxx .input-group {
+    position: relative;
+    mix-blend-mode: lighten;
+  }
+  .twofourxx .input-group__label {
+    position: absolute;
+    left: 3em;
+    top: -0.28em;
+    background: #000;
+  }
+}
+.twofourxx .input-group__label {
+  padding: 0 0.5em;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+  font-size: 0.875em;
+  letter-spacing: 0.1em;
+  color: #ccd;
+  color: rgba(255, 220, 255, 0.6);
+  cursor: pointer;
+}
+.twofourxx .input-group__input {
+  color: #fff;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-style: none;
+  outline: none;
+  height: calc(1em + 1.6em + 0.5em);
+  width: 100%;
+  padding: 0.8em 1em;
+  border: 0.25em solid transparent;
+  background-image: linear-gradient(#000, #000), linear-gradient(120deg, #ff0000 0%, #2200ff 50%, #9f0 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius: 1.8em;
+  background-size: 200% 100%;
+  transition: background-position 0.8s ease-out;
+}
+.twofourxx .input-group__input:hover {
+  background-position: 100% 0;
+}
+.twofourxx .input-group__input:focus {
+  outline: 2px dashed #ca2800;
+  outline-offset: 0.25em;
+}
+.twofourxx .window-content {
+  height: 100%;
+  padding: 5px;
+  overflow-y: hidden;
+}
+.twofourxx form {
+  background: linear-gradient(100deg, #402, #006);
+  padding: 2em;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 460 55'%3E%3Cg fill='none' fill-rule='evenodd' stroke='%23fff' stroke-width='7' opacity='.1'%3E%3Cpath d='M-345 34.5s57.5-13.8 115-13.8 115 13.8 115 13.8S-57.5 48.3 0 48.3s115-13.8 115-13.8 57.5-13.8 115-13.8 115 13.8 115 13.8 57.5 13.8 115 13.8 115-13.8 115-13.8'/%3E%3Cpath d='M-345 20.7s57.5-13.8 115-13.8 115 13.8 115 13.8S-57.5 34.5 0 34.5s115-13.8 115-13.8S172.5 6.9 230 6.9s115 13.8 115 13.8 57.5 13.8 115 13.8 115-13.8 115-13.8m-920 27.6s57.5-13.8 115-13.8 115 13.8 115 13.8S-57.5 62.1 0 62.1s115-13.8 115-13.8 57.5-13.8 115-13.8 115 13.8 115 13.8 57.5 13.8 115 13.8 115-13.8 115-13.8'/%3E%3Cpath d='M-345 6.9s57.5-13.8 115-13.8S-115 6.9-115 6.9-57.5 20.7 0 20.7 115 6.9 115 6.9 172.5-6.9 230-6.9 345 6.9 345 6.9s57.5 13.8 115 13.8S575 6.9 575 6.9'/%3E%3Cpath d='M-345-6.9s57.5-13.8 115-13.8S-115-6.9-115-6.9-57.5 6.9 0 6.9 115-6.9 115-6.9s57.5-13.8 115-13.8S345-6.9 345-6.9 402.5 6.9 460 6.9 575-6.9 575-6.9m-920 69s57.5-13.8 115-13.8 115 13.8 115 13.8S-57.5 75.9 0 75.9s115-13.8 115-13.8 57.5-13.8 115-13.8 115 13.8 115 13.8 57.5 13.8 115 13.8 115-13.8 115-13.8'/%3E%3C/g%3E%3C/svg%3E%0A"), linear-gradient(80deg, #202, #006);
+  background-position: 50% 50%;
+  animation: background-move 10s linear infinite;
+  background-size: 100vw auto, 100% 100%;
+  background-size: unquote('max(100vw, 30em)') auto, 100% 100%;
+  height: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .twofourxx * {
+    animation: none !important;
+    transition-duration: 0.001s !important;
+  }
+}
+@keyframes background-move {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+  100% {
+    background-position: 100vw 0, 0 0;
+    background-position: unquote('max(100vw, 40em)') 0, 0 0;
+  }
+}
+.twofourxx .sheet-header {
+  flex: 1 1 auto;
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.twofourxx .sheet-header .profile-fields {
+  margin-top: 5px;
+  margin-right: 10px;
+  display: flex;
+  flex: 0 0 auto;
+}
+.twofourxx .sheet-header .profile-fields .profile-input-fields {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  height: 100%;
+}
+.twofourxx .sheet-header .profile-fields > img {
+  width: 140px;
+  height: 140px;
+  margin-right: 20px;
+}
+.twofourxx .sheet-header .header-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.twofourxx .sheet-header .profile > h1 {
+  margin-top: -5px;
+  padding: 0;
+  height: 1em;
+}
+.twofourxx .resource {
+  width: 50%;
+  height: 40px;
+  margin-top: 10px;
+  float: left;
+  text-align: center;
+}
+.twofourxx .resource input {
+  width: 100px;
+  height: 28px;
+}
+.twofourxx .tabs {
+  flex: 0 0 40px;
+  border-top: 1px solid #AAA;
+  border-bottom: 1px solid #AAA;
+}
+.twofourxx .tabs .item {
+  line-height: 40px;
+  font-weight: bold;
+}
+.twofourxx .tabs .item.active {
+  text-decoration: underline;
+  text-shadow: none;
+}
+.twofourxx .sheet-body {
+  overflow: hidden;
+}
+.twofourxx .sheet-body .tab {
+  height: 100%;
+  overflow-y: auto;
+}
+.twofourxx .editor,
+.twofourxx .editor-content {
+  height: 100%;
+}
+.twofourxx .item-list {
+  list-style: none;
+  margin: 7px 0;
+  padding: 0;
+  overflow-y: auto;
+}
+.twofourxx .item-list .item {
+  min-height: 30px;
+  line-height: 24px;
+  padding: 3px 0;
+  border-bottom: 1px solid #BBB;
+  align-items: stretch;
+}
+.twofourxx .item-list .item img {
+  flex: 0 0 24px;
+  margin-right: 5px;
+}
+.twofourxx .item-list .item-name {
+  margin: 0;
+}
+.twofourxx .item-list .item-controls {
+  flex: 0 0 36px;
+}
+.twofourxx .item-list .item-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  flex: 2;
+  justify-content: flex-start;
+}
+.twofourxx .item-list .item-button {
+  line-height: 1;
+  font-size: 11px;
+  flex: none;
+  width: auto;
+}
+.twofourxx .attributes {
+  position: relative;
+}
+.twofourxx .attributes .attribute-control,
+.twofourxx .attributes .group-control {
+  flex: 0 0 20px;
+  text-align: center;
+  line-height: 28px;
+  border: none;
+}
+.twofourxx .attributes .attribute-roll {
+  flex: 0 0 20px;
+  text-align: center;
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.twofourxx .attributes .group-prefix {
+  height: 31px;
+  margin-right: 10px;
+}
+.twofourxx .attributes .button {
+  width: 100%;
+  flex: 1;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.1);
+  border: 2px groove #f0f0e0;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 28px;
+  display: block;
+}
+.twofourxx .attributes .attribute-key {
+  background: transparent;
+  border: none;
+}
+.twofourxx .attributes-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  align-items: center;
+  padding: 0 5px;
+  margin: 5px 0;
+  background: #cfcdc2;
+  border: 1px solid #AAA;
+  border-radius: 2px;
+  text-align: left;
+  font-weight: bold;
+}
+.twofourxx .attributes-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.twofourxx .attributes-list li > * {
+  margin: 0 3px;
+  height: 28px;
+  line-height: 24px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #AAA;
+}
+.twofourxx .attributes-list .attribute-col label {
+  font-size: 10px;
+  text-align: center;
+  line-height: 1;
+}
+.twofourxx .attributes-list .attribute-col input {
+  font-size: 11px;
+  text-align: center;
+  line-height: 1;
+  height: 50%;
+}
+.twofourxx .attribute input[type="text"]::placeholder,
+.twofourxx .group-header input[type="text"]::placeholder {
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+}
+.twofourxx .attribute input[type="text"]:focus::placeholder,
+.twofourxx .group-header input[type="text"]:focus::placeholder {
+  opacity: 1;
+}
+.twofourxx .group-controls {
+  margin: 5px;
+}
+.twofourxx .groups-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.twofourxx .group {
+  margin: 5px 0 0;
+  padding: 0;
+}
+.twofourxx .group-header {
+  align-items: flex-start;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid #AAA;
+  border-radius: 2px;
+  padding: 2px 5px;
+}
+.twofourxx .group-key,
+.twofourxx .group-label {
+  font-weight: bold;
+  border: none;
+  border-bottom: 1px solid #AAA;
+  background: transparent;
+  border-radius: 0;
+  margin-right: 6px;
+}
+.twofourxx .group-key {
+  opacity: 0.75;
+}
+.twofourxx .group-label {
+  flex: 2;
+}
+.twofourxx .group-dtype {
+  height: 24px;
+  flex: 0 0 116px;
+  margin: 0 5px;
+}
+.twofourxx.sheet.actor {
+  min-width: 560px;
+  min-height: 420px;
+}
+.twofourxx.sheet.item {
+  min-width: 460px;
+  min-height: 400px;
+}

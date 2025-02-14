@@ -1,93 +1,160 @@
-import init, { add_numbers } from "../twofourxx.js";
-const { HTMLField, NumberField, SchemaField, StringField } = foundry.data.fields;
-
-/* -------------------------------------------- */
-/*  Actor Models                                */
-/* -------------------------------------------- */
-
-class ActorDataModel extends foundry.abstract.TypeDataModel {
-    static defineSchema() {
-        // All Actors have resources.
-        return {
-            resources: new SchemaField({
-                health: new SchemaField({
-                    min: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
-                    value: new NumberField({ required: true, integer: true, min: 0, initial: 10 }),
-                    max: new NumberField({ required: true, integer: true, min: 0, initial: 10 })
-                }),
-                power: new SchemaField({
-                    min: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
-                    value: new NumberField({ required: true, integer: true, min: 0, initial: 1 }),
-                    max: new NumberField({ required: true, integer: true, min: 0, initial: 3 })
-                })
-            })
-        };
-    }
-}
-
-class ImportantActorDataModel extends ActorDataModel {
-    static defineSchema() {
-        // Only important Actors have a background and hair color.
-        return {
-            ...super.defineSchema(),
-            background: new SchemaField({
-                biography: new HTMLField({ required: true, blank: true }),
-                hairColor: new StringField({ required: true, blank: true })
-            })
-        };
-    }
-}
-
-export class HeroDataModel extends ImportantActorDataModel {
-    static defineSchema() {
-        return {
-            ...super.defineSchema(),
-            goodness: new SchemaField({
-                value: new NumberField({ required: true, integer: true, min: 0, initial: 5 }),
-                max: new NumberField({ required: true, integer: true, min: 0, initial: 10 })
-            }),
-            level: new NumberField({ required: true, integer: true, min: 0, initial: 0, max: 30 })
-        };
-    }
-}
-
-export class VillainDataModel extends ImportantActorDataModel {
-    static defineSchema() {
-        return {
-            ...super.defineSchema(),
-            wickedness: new SchemaField({
-                value: new NumberField({ required: true, integer: true, min: 0, initial: 5 }),
-                max: new NumberField({ required: true, integer: true, min: 0, initial: 100 })
-            })
-        };
-    }
-}
-export class SystemActor extends Actor {
-    async applyDamage(damage) {
-        // Always take a minimum of 1 damage, and round to the nearest integer.
-        damage = Math.round(Math.max(1, damage));
-
-        // Update the health.
-        const { value } = this.system.resources.health;
-        await this.update({ "system.resources.health.value": value - damage });
-
-        // Log a message.
-        await ChatMessage.implementation.create({
-            content: `${this.name} took ${damage} damage!`
-        });
-    }
-}
-
-export class SystemItem extends Item {
-    get isFree() {
-        return this.price < 1;
-    }
-}
-
-CONFIG.Actor.documentClass = SystemActor;
-CONFIG.Item.documentClass = SystemItem;
+// Import Modules
+import { SimpleActor } from "./actor.js";
+import { SimpleItem } from "./item.js";
+import { SimpleItemSheet } from "./item-sheet.js";
+import { SimpleActorSheet } from "./actor-sheet.js";
+import { preloadHandlebarsTemplates } from "./templates.js";
+import { createTwofourxxMacro } from "./macro.js";
+import { SimpleToken, SimpleTokenDocument } from "./token.js";
 
 Hooks.on("ready", async () => {
-    await init(); // Initialize WASM module
-    console.log("WASM Loaded: 10 + 20 =", add_numbers(10, 20));
+    console.log("I shit my pants, lol.");
+
+    /**
+     * Set an initiative formula for the system. This will be updated later.
+     * @type {String}
+     */
+    CONFIG.Combat.initiative = {
+        formula: "1d20",
+        decimals: 2
+    };
+
+    game.twofourxx = {
+        SimpleActor,
+        createTwofourxxMacro
+    };
+
+    // Define custom Document classes
+    CONFIG.Actor.documentClass = SimpleActor;
+    CONFIG.Item.documentClass = SimpleItem;
+    CONFIG.Token.documentClass = SimpleTokenDocument;
+    CONFIG.Token.objectClass = SimpleToken;
+
+    // Register sheet application classes
+    Actors.unregisterSheet("core", ActorSheet);
+    Actors.registerSheet("twofourxx", SimpleActorSheet, { makeDefault: true });
+    Items.unregisterSheet("core", ItemSheet);
+    Items.registerSheet("twofourxx", SimpleItemSheet, { makeDefault: true });
+
+    // Register system settings
+    game.settings.register("twofourxx", "macroShorthand", {
+        name: "SETTINGS.SimpleMacroShorthandN",
+        hint: "SETTINGS.SimpleMacroShorthandL",
+        scope: "world",
+        type: Boolean,
+        default: true,
+        config: true
+    });
+
+    // Register initiative setting.
+    game.settings.register("twofourxx", "initFormula", {
+        name: "SETTINGS.SimpleInitFormulaN",
+        hint: "SETTINGS.SimpleInitFormulaL",
+        scope: "world",
+        type: String,
+        default: "1d20",
+        config: true,
+        onChange: formula => _simpleUpdateInit(formula, true)
+    });
+
+    // Retrieve and assign the initiative formula setting.
+    const initFormula = game.settings.get("twofourxx", "initFormula");
+    _simpleUpdateInit(initFormula);
+
+    /**
+     * Update the initiative formula.
+     * @param {string} formula - Dice formula to evaluate.
+     * @param {boolean} notify - Whether or not to post nofications.
+     */
+    function _simpleUpdateInit(formula, notify = false) {
+        const isValid = Roll.validate(formula);
+        if ( !isValid ) {
+            if ( notify ) ui.notifications.error(`${game.i18n.localize("SIMPLE.NotifyInitFormulaInvalid")}: ${formula}`);
+            return;
+        }
+        CONFIG.Combat.initiative.formula = formula;
+    }
+
+    /**
+     * Slugify a string.
+     */
+    Handlebars.registerHelper('slugify', function(value) {
+        return value.slugify({strict: true});
+    });
+
+    // Preload template partials
+    await preloadHandlebarsTemplates();
+});
+
+/**
+ * Macrobar hook.
+ */
+Hooks.on("hotbarDrop", (bar, data, slot) => createTwofourxxMacro(data, slot));
+
+/**
+ * Adds the actor template context menu.
+ */
+Hooks.on("getActorDirectoryEntryContext", (html, options) => {
+
+    // Define an actor as a template.
+    options.push({
+        name: game.i18n.localize("SIMPLE.DefineTemplate"),
+        icon: '<i class="fas fa-stamp"></i>',
+        condition: li => {
+            const actor = game.actors.get(li.data("documentId"));
+            return !actor.isTemplate;
+        },
+        callback: li => {
+            const actor = game.actors.get(li.data("documentId"));
+            actor.setFlag("twofourxx", "isTemplate", true);
+        }
+    });
+
+    // Undefine an actor as a template.
+    options.push({
+        name: game.i18n.localize("SIMPLE.UnsetTemplate"),
+        icon: '<i class="fas fa-times"></i>',
+        condition: li => {
+            const actor = game.actors.get(li.data("documentId"));
+            return actor.isTemplate;
+        },
+        callback: li => {
+            const actor = game.actors.get(li.data("documentId"));
+            actor.setFlag("twofourxx", "isTemplate", false);
+        }
+    });
+});
+
+/**
+ * Adds the item template context menu.
+ */
+Hooks.on("getItemDirectoryEntryContext", (html, options) => {
+
+    // Define an item as a template.
+    options.push({
+        name: game.i18n.localize("SIMPLE.DefineTemplate"),
+        icon: '<i class="fas fa-stamp"></i>',
+        condition: li => {
+            const item = game.items.get(li.data("documentId"));
+            return !item.isTemplate;
+        },
+        callback: li => {
+            const item = game.items.get(li.data("documentId"));
+            item.setFlag("twofourxx", "isTemplate", true);
+        }
+    });
+
+    // Undefine an item as a template.
+    options.push({
+        name: game.i18n.localize("SIMPLE.UnsetTemplate"),
+        icon: '<i class="fas fa-times"></i>',
+        condition: li => {
+            const item = game.items.get(li.data("documentId"));
+            return item.isTemplate;
+        },
+        callback: li => {
+            const item = game.items.get(li.data("documentId"));
+            item.setFlag("twofourxx", "isTemplate", false);
+        }
+    });
 });

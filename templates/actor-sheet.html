@@ -1,0 +1,51 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header ">
+
+        <div class="header-fields">
+            <div class="profile-fields">
+                <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}" alt="Character Portrait"/>
+
+                <div class="profile-input-fields">
+<!--                    <h1>PROFILE:</h1>-->
+                    <div class="input-group">
+                        <label class="input-group__label" for="player_name">Player Name</label>
+                        <input class="input-group__input" id="player_name" name="player_name" type="text" value="{{data.player_name}}" placeholder="John Smith" />
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group__label" for="character_name">Character Name</label>
+                        <input class="input-group__input" id="character_name" name="character_name" type="text" value="{{data.character_name}}" placeholder="Character Name" />
+                    </div>
+<!--                </div>-->
+<!--                <div class="profile-input-fields">-->
+                    <div class="input-group">
+                        <label class="input-group__label" for="origin">Origin</label>
+                        <input class="input-group__input" id="origin" name="origin" type="text" value="{{data.origin}}" placeholder="Origin" />
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group__label" for="specialty">Specialty</label>
+                        <input class="input-group__input" id="specialty" name="specialty" type="text" value="{{data.specialty}}" placeholder="Specialty" />
+                    </div>
+                </div>
+            </div>
+            <!--
+            <div class="resource">
+                <input type="number" name="system.health.value" value="{{systemData.health.value}}"/>
+                <span> / </span>
+                <input type="number" name="system.health.max" value="{{systemData.health.max}}"/>
+            </div>
+            <div class="resource">
+                <input type="number" name="system.power.value" value="{{systemData.power.value}}"/>
+                <span> / </span>
+                <input type="number" name="system.power.max" value="{{systemData.power.max}}"/>
+            </div>
+            -->
+        </div>
+    </header>
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+
+    </section>
+</form>
