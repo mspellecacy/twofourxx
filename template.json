@@ -1,16 +1,5 @@
 {
-"Actor": {
-  "types": ["character"]
-},
-"Item": {
-  "types": ["item"],
-  "htmlFields": ["description"],
-  "item": {
-    "description": "",
-    "quantity": 1,
-    "weight": 0,
-    "attributes": {},
-    "groups": {}
+  "Actor": {
+    "types": ["character"]
   }
-}
 }

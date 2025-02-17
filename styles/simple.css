@@ -2,10 +2,6 @@
   font-family: "Chintzy";
   src: url("/systems/twofourxx/assets/fonts/chintzy_cpu_brk/chintzy.ttf") format("truetype");
 }
-@font-face {
-  font-family: "Boba Mono";
-  src: url("/systems/twofourxx/assets/fonts/boba_mono/boba-mono.otf") format("opentype");
-}
 :root {
   --size: 20px;
 }
@@ -435,7 +431,7 @@
   background-size: 200% 100%;
   transition: background-position 0.8s ease-out;
   width: 98%;
-  height: 10em;
+  height: 10.7em;
 }
 .skill-item button {
   margin-top: 2px;

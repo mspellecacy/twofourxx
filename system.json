@@ -27,9 +27,6 @@
             "path": "lang/pl.json",
             "flags": {}
         }
-    ],
-    "primaryTokenAttribute": "health",
-    "secondaryTokenAttribute": "power"
-
+    ]
 }
 
