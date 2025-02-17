@@ -1,5 +1,15 @@
+@font-face {
+  font-family: "Chintzy";
+  src: url("/systems/twofourxx/assets/fonts/chintzy_cpu_brk/chintzy.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Boba Mono";
+  src: url("/systems/twofourxx/assets/fonts/boba_mono/boba-mono.otf") format("opentype");
+}
+:root {
+  --size: 20px;
+}
 .twofourxx {
-  /* Sheet Tabs */
   /* Items List */
   /* Attributes */
 }
@@ -33,48 +43,35 @@
   cursor: pointer;
 }
 .twofourxx .input-group__input {
+  font-family: "Chintzy";
   color: #fff;
   font-size: 1.25rem;
   line-height: 1;
-  border-style: none;
   outline: none;
   height: calc(1em + 1.6em + 0.5em);
   width: 100%;
   padding: 0.8em 1em;
-  border: 0.25em solid transparent;
-  background-image: linear-gradient(#000, #000), linear-gradient(120deg, #ff0000 0%, #2200ff 50%, #9f0 100%);
+  border: 0.15em solid transparent;
+  background-image: linear-gradient(#000, #000), linear-gradient(120deg, #610000 0%, #271d5c 50%, #9f0 100%);
   background-origin: border-box;
   background-clip: padding-box, border-box;
-  border-radius: 1.8em;
   background-size: 200% 100%;
   transition: background-position 0.8s ease-out;
 }
-.twofourxx .input-group__input:hover {
-  background-position: 100% 0;
-}
-.twofourxx .input-group__input:focus {
-  outline: 2px dashed #ca2800;
-  outline-offset: 0.25em;
-}
 .twofourxx .window-content {
+  min-width: 600px;
   height: 100%;
-  padding: 5px;
+  padding: 0;
   overflow-y: hidden;
 }
 .twofourxx form {
-  background: linear-gradient(100deg, #402, #006);
-  padding: 2em;
+  padding: 1em;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 460 55'%3E%3Cg fill='none' fill-rule='evenodd' stroke='%23fff' stroke-width='7' opacity='.1'%3E%3Cpath d='M-345 34.5s57.5-13.8 115-13.8 115 13.8 115 13.8S-57.5 48.3 0 48.3s115-13.8 115-13.8 57.5-13.8 115-13.8 115 13.8 115 13.8 57.5 13.8 115 13.8 115-13.8 115-13.8'/%3E%3Cpath d='M-345 20.7s57.5-13.8 115-13.8 115 13.8 115 13.8S-57.5 34.5 0 34.5s115-13.8 115-13.8S172.5 6.9 230 6.9s115 13.8 115 13.8 57.5 13.8 115 13.8 115-13.8 115-13.8m-920 27.6s57.5-13.8 115-13.8 115 13.8 115 13.8S-57.5 62.1 0 62.1s115-13.8 115-13.8 57.5-13.8 115-13.8 115 13.8 115 13.8 57.5 13.8 115 13.8 115-13.8 115-13.8'/%3E%3Cpath d='M-345 6.9s57.5-13.8 115-13.8S-115 6.9-115 6.9-57.5 20.7 0 20.7 115 6.9 115 6.9 172.5-6.9 230-6.9 345 6.9 345 6.9s57.5 13.8 115 13.8S575 6.9 575 6.9'/%3E%3Cpath d='M-345-6.9s57.5-13.8 115-13.8S-115-6.9-115-6.9-57.5 6.9 0 6.9 115-6.9 115-6.9s57.5-13.8 115-13.8S345-6.9 345-6.9 402.5 6.9 460 6.9 575-6.9 575-6.9m-920 69s57.5-13.8 115-13.8 115 13.8 115 13.8S-57.5 75.9 0 75.9s115-13.8 115-13.8 57.5-13.8 115-13.8 115 13.8 115 13.8 57.5 13.8 115 13.8 115-13.8 115-13.8'/%3E%3C/g%3E%3C/svg%3E%0A"), linear-gradient(80deg, #202, #006);
-  background-position: 50% 50%;
-  animation: background-move 10s linear infinite;
-  background-size: 100vw auto, 100% 100%;
-  background-size: unquote('max(100vw, 30em)') auto, 100% 100%;
   height: 100%;
+  background-color: #000000;
 }
 @media (prefers-reduced-motion: reduce) {
   .twofourxx * {
@@ -91,20 +88,27 @@
     background-position: unquote('max(100vw, 40em)') 0, 0 0;
   }
 }
+@keyframes flicker {
+  to {
+    mask-position: 50% 50%, 0 50%;
+  }
+}
 .twofourxx .sheet-header {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   overflow: auto;
   display: flex;
   align-items: flex-start;
-  flex-direction: column;
   flex-wrap: wrap;
   margin-bottom: 10px;
+  /* Sheet Tabs */
 }
 .twofourxx .sheet-header .profile-fields {
-  margin-top: 5px;
+  margin-top: 1em;
   margin-right: 10px;
+  margin-bottom: 1em;
   display: flex;
   flex: 0 0 auto;
+  flex-grow: 1;
 }
 .twofourxx .sheet-header .profile-fields .profile-input-fields {
   display: grid;
@@ -128,32 +132,39 @@
   padding: 0;
   height: 1em;
 }
-.twofourxx .resource {
+.twofourxx .sheet-header .resource {
   width: 50%;
   height: 40px;
   margin-top: 10px;
   float: left;
   text-align: center;
 }
-.twofourxx .resource input {
+.twofourxx .sheet-header .resource input {
   width: 100px;
   height: 28px;
 }
-.twofourxx .tabs {
+.twofourxx .sheet-header .tabs {
   flex: 0 0 40px;
   border-top: 1px solid #AAA;
   border-bottom: 1px solid #AAA;
 }
-.twofourxx .tabs .item {
+.twofourxx .sheet-header .tabs .item {
   line-height: 40px;
   font-weight: bold;
 }
-.twofourxx .tabs .item.active {
+.twofourxx .sheet-header .tabs .item.active {
   text-decoration: underline;
   text-shadow: none;
 }
 .twofourxx .sheet-body {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 auto;
+  width: 100%;
   overflow: hidden;
+  gap: 10px;
+  justify-content: center;
+  z-index: 2;
 }
 .twofourxx .sheet-body .tab {
   height: 100%;
@@ -195,9 +206,11 @@
   justify-content: flex-start;
 }
 .twofourxx .item-list .item-button {
+  background-color: #610000;
+  color: white;
   line-height: 1;
-  font-size: 11px;
-  flex: none;
+  font-size: 1em;
+  flex: 1 1 auto;
   width: auto;
 }
 .twofourxx .attributes {
@@ -323,11 +336,179 @@
   flex: 0 0 116px;
   margin: 0 5px;
 }
+.skills-container {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+}
+.skills-label {
+  margin-left: 5px;
+  font-weight: bolder;
+  padding: 0 0.5em;
+  text-transform: uppercase;
+  font-size: 0.875em;
+  letter-spacing: 0.1em;
+  color: #ccd;
+  color: rgba(255, 220, 255, 0.6);
+  cursor: pointer;
+}
+.skill-item {
+  display: flex;
+  align-items: flex-start;
+  align-content: center;
+  margin-bottom: 5px;
+  margin: 5px;
+}
+.skill-item option {
+  background-color: #610000;
+}
+.skill-item select {
+  margin-left: 8px;
+  margin-right: 5px;
+  margin-top: 2px;
+  color: white;
+  background-color: #610000;
+  font-family: 'dicefont';
+  font-size: 1.65em;
+  width: 100px;
+  height: 1.8em;
+  line-height: 2em;
+  flex-grow: 1;
+  transition: background-position 0.8s ease-out;
+  border: none;
+}
+.skill-item input[type="checkbox"] {
+  appearance: none;
+  color: #610000;
+  width: 1.5em;
+  height: 1.5em;
+  border: 1.5em solid currentColor;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  vertical-align: center;
+  display: grid;
+  place-content: center;
+}
+.skill-item input[type="checkbox"]::before {
+  --form-control-color: white;
+  content: "";
+  appearance: none;
+  width: 2.5em;
+  height: 2.5em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 2.5em 2.5em var(--form-control-color);
+}
+.skill-item input[type="checkbox"]:checked::before {
+  appearance: none;
+  color: #610000;
+  transform: scale(1);
+  transform-origin: center;
+  clip-path: polygon(15% 0%, 50% 35%, 85% 0%, 100% 15%, 65% 50%, 100% 85%, 85% 100%, 50% 65%, 15% 100%, 0% 85%, 35% 50%, 0% 15%);
+}
+.skill-item input[type="text"] {
+  font-family: "Chintzy";
+  color: #fff;
+  font-size: 1.25rem;
+  line-height: 1;
+  outline: #610000;
+  height: calc(0.15em + 1.6em + 0.5em);
+  width: 100%;
+  padding: 0.8em 1em;
+  border: 0.15em solid transparent;
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), linear-gradient(120deg, #610000 4%, rgba(39, 29, 92, 0.5) 50%, rgba(0, 0, 0, 0) 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-size: 200% 100%;
+  transition: background-position 0.8s ease-out;
+}
+.skill-item textarea {
+  font-family: "Chintzy";
+  color: white;
+  outline: #610000;
+  font-size: 1.25rem;
+  line-height: 1;
+  border: 0.15em solid transparent;
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), linear-gradient(120deg, #610000 4%, rgba(39, 29, 92, 0.5) 50%, rgba(0, 0, 0, 0) 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-size: 200% 100%;
+  transition: background-position 0.8s ease-out;
+  width: 98%;
+  height: 10em;
+}
+.skill-item button {
+  margin-top: 2px;
+  margin-left: 5px;
+  color: white;
+  outline: #610000;
+  font-size: 1.6em;
+  line-height: 1;
+  border: 0.15em solid transparent;
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), linear-gradient(120deg, #610000 4%, rgba(39, 29, 92, 0.5) 50%, rgba(0, 0, 0, 0) 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-size: 200% 100%;
+  transition: background-position 0.8s ease-out;
+  width: 2em;
+  height: 2em;
+}
+.skill-item button:focus {
+  animation: tilt-shaking 0.25s linear 2;
+}
+@keyframes tilt-shaking {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(0eg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
 .twofourxx.sheet.actor {
-  min-width: 560px;
-  min-height: 420px;
+  max-width: 800px;
+  min-width: 800px;
+  min-height: 820px;
 }
 .twofourxx.sheet.item {
   min-width: 460px;
   min-height: 400px;
 }
+.custom-dropdown {
+  position: relative;
+  width: 200px;
+}
+.shape {
+  --primary: red;
+  --secondary: blue;
+  background: linear-gradient(45deg, var(--primary) 0%, var(--secondary) 100%);
+  animation: morph 4s ease-in-out infinite;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  height: 400px;
+  transition: all 1s ease-in-out;
+  width: 400px;
+  z-index: 5;
+}
+@keyframes morph {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    background: linear-gradient(45deg, var(--primary) 0%, var(--secondary) 100%);
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    background: linear-gradient(45deg, var(--third) 0%, var(--secondary) 100%);
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    background: linear-gradient(45deg, var(--primary) 0%, var(--secondary) 100%);
+  }
+}
+/*# sourceMappingURL=simple.css.map */

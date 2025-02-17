@@ -35,5 +35,14 @@
   "SIMPLE.DeleteGroupContent": "Do you wish to delete this group? This will delete the following group and all attributes included in it: ",
 
   "SIMPLE.Create": "Create",
-  "SIMPLE.New": "New"
+  "SIMPLE.New": "New",
+  "TWOFOURXX.CharacterNameLabel": "Name",
+  "TWOFOURXX.CharacterNamePlaceHolder": "Zaphod Beeblebrox",
+  "TWOFOURXX.CharacterOriginLabel": "Origin",
+  "TWOFOURXX.CharacterOriginPlaceHolder": "Betelgeuse V",
+  "TWOFOURXX.CharacterSpecialtyLabel": "Specialty",
+  "TWOFOURXX.CharacterSpecialtyPlaceHolder": "Galactic President",
+  "TWOFOURXX.CharacterCashLabel": "Cash",
+  "TWOFOURXX.CharacterCashPlaceHolder": "Infinite"
+
 }

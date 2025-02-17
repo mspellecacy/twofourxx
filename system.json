@@ -11,7 +11,8 @@
         "verified": 12
     },
     "styles": [
-        "styles/simple.css"
+        "styles/simple.css",
+        "styles/char-bg.css"
     ],
     "languages": [
         {
@@ -27,10 +28,6 @@
             "flags": {}
         }
     ],
-    "compatibility": {
-        "minimum": "10",
-        "verified": "12"
-    },
     "primaryTokenAttribute": "health",
     "secondaryTokenAttribute": "power"
 

@@ -8,8 +8,6 @@ import { createTwofourxxMacro } from "./macro.js";
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
 
 Hooks.on("ready", async () => {
-    console.log("I shit my pants, lol.");
-
     /**
      * Set an initiative formula for the system. This will be updated later.
      * @type {String}
@@ -26,7 +24,6 @@ Hooks.on("ready", async () => {
 
     // Define custom Document classes
     CONFIG.Actor.documentClass = SimpleActor;
-    CONFIG.Item.documentClass = SimpleItem;
     CONFIG.Token.documentClass = SimpleTokenDocument;
     CONFIG.Token.objectClass = SimpleToken;
 
@@ -82,14 +79,14 @@ Hooks.on("ready", async () => {
         return value.slugify({strict: true});
     });
 
+    // foundry's selectOptions helper is poopy for my very basic needs.
+    Handlebars.registerHelper('select', function(selected, option) {
+        return (selected == option) ? 'selected' : '';
+    });
+
     // Preload template partials
     await preloadHandlebarsTemplates();
 });
-
-/**
- * Macrobar hook.
- */
-Hooks.on("hotbarDrop", (bar, data, slot) => createTwofourxxMacro(data, slot));
 
 /**
  * Adds the actor template context menu.
@@ -125,36 +122,3 @@ Hooks.on("getActorDirectoryEntryContext", (html, options) => {
     });
 });
 
-/**
- * Adds the item template context menu.
- */
-Hooks.on("getItemDirectoryEntryContext", (html, options) => {
-
-    // Define an item as a template.
-    options.push({
-        name: game.i18n.localize("SIMPLE.DefineTemplate"),
-        icon: '<i class="fas fa-stamp"></i>',
-        condition: li => {
-            const item = game.items.get(li.data("documentId"));
-            return !item.isTemplate;
-        },
-        callback: li => {
-            const item = game.items.get(li.data("documentId"));
-            item.setFlag("twofourxx", "isTemplate", true);
-        }
-    });
-
-    // Undefine an item as a template.
-    options.push({
-        name: game.i18n.localize("SIMPLE.UnsetTemplate"),
-        icon: '<i class="fas fa-times"></i>',
-        condition: li => {
-            const item = game.items.get(li.data("documentId"));
-            return item.isTemplate;
-        },
-        callback: li => {
-            const item = game.items.get(li.data("documentId"));
-            item.setFlag("twofourxx", "isTemplate", false);
-        }
-    });
-});

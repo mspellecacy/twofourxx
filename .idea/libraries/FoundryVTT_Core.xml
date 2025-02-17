@@ -2,6 +2,7 @@
   <library name="FoundryVTT Core" type="javaScript">
     <properties>
       <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/../foundryvtt_v12_331/resources/app/client-esm/dice/roll.mjs" />
         <item url="file://$PROJECT_DIR$/../foundryvtt_v12_331/resources/app/client/config.js" />
         <item url="file://$PROJECT_DIR$/../foundryvtt_v12_331/resources/app/client/core/clipboard.js" />
         <item url="file://$PROJECT_DIR$/../foundryvtt_v12_331/resources/app/client/core/document-index.js" />
@@ -31,6 +32,7 @@
       </sourceFilesUrls>
     </properties>
     <CLASSES>
+      <root url="file://$PROJECT_DIR$/../foundryvtt_v12_331/resources/app/client-esm/dice/roll.mjs" />
       <root url="file://$PROJECT_DIR$/../foundryvtt_v12_331/resources/app/client/config.js" />
       <root url="file://$PROJECT_DIR$/../foundryvtt_v12_331/resources/app/client/core/clipboard.js" />
       <root url="file://$PROJECT_DIR$/../foundryvtt_v12_331/resources/app/client/core/document-index.js" />

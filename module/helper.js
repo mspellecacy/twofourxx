@@ -89,6 +89,7 @@ export class EntitySheetHelper {
 
     /** @override */
     static onSubmit(event) {
+        console.log("FART FART");
         // Closing the form/sheet will also trigger a submit, so only evaluate if this is an event.
         if ( event.currentTarget ) {
             // Exit early if this isn't a named attribute.
@@ -407,6 +408,75 @@ export class EntitySheetHelper {
     }
 
     /* -------------------------------------------- */
+
+    /**
+     * Update attributes when updating an actor object.
+     * @param {object} formData       The form data object to modify keys and values for.
+     * @param {Document} document     The Actor or Item document within which attributes are being updated
+     * @returns {object}              The updated formData object.
+     */
+    static updateSkills(formData, document) {
+        console.log("WAT BAT");
+        let skillKeys = [];
+        console.log({formData: formData, document: document});
+        // Handle the free-form skills list
+        const formAttrs = foundry.utils.expandObject(formData)?.system?.skills || {};
+        console.log({formAttrs: formAttrs});
+        const skills = Object.values(formAttrs).reduce((obj, v) => {
+            let attrs = [];
+            let group = null;
+            // Handle attribute keys for grouped attributes.
+            if ( !v["key"] ) {
+                attrs = Object.keys(v);
+                attrs.forEach(skillKey => {
+                    group = v[skillKey]['group'];
+                    skillKeys.push(group);
+                    let skill = v[skillKey];
+                    const k = this.cleanKey(v[skillKey]["key"] ? v[skillKey]["key"].trim() : skillKey.trim());
+                    delete skill["key"];
+                    // Add the new attribute if it's grouped, but we need to build the nested structure first.
+                    if ( !obj[group] ) {
+                        obj[group] = {};
+                    }
+                    obj[group][k] = skill;
+                });
+            }
+            // Handle attribute keys for ungrouped attributes.
+            else {
+                const k = this.cleanKey(v["key"].trim());
+                delete v["key"];
+                // Add the new attribute only if it's ungrouped.
+                if ( !group ) {
+                    obj[k] = v;
+                }
+            }
+            return obj;
+        }, {});
+
+        // Remove attributes which are no longer used
+        for ( let k of Object.keys(document.system.skills) ) {
+            if ( !skills.hasOwnProperty(k) ) skills[`-=${k}`] = null;
+        }
+
+        // Remove grouped attributes which are no longer used.
+        for ( let group of groupKeys) {
+            if ( document.system.skills[group] ) {
+                for ( let k of Object.keys(document.system.skills[group]) ) {
+                    if ( !skills[group].hasOwnProperty(k) ) skills[group][`-=${k}`] = null;
+                }
+            }
+        }
+
+        // // Re-combine formData
+        formData = Object.entries(formData).filter(e => !e[0].startsWith("system.skills")).reduce((obj, e) => {
+            obj[e[0]] = e[1];
+            return obj;
+        }, {_id: document.id, "system.skills": skills});
+        console.log({formData: formData});
+        return formData;
+    }
+
+
 
     /**
      * Update attributes when updating an actor object.
