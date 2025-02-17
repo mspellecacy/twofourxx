@@ -80,7 +80,6 @@ export class SimpleActorSheet extends ActorSheet {
     /** @inheritdoc */
     _getSubmitData(updateData) {
         let formData = super._getSubmitData(updateData);
-        console.log({formData: formData});
         return formData;
     }
 }
