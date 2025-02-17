@@ -1,9 +1,17 @@
 {
+    "id": "twofourxx",
     "name": "twofourxx",
-    "title": "24XX",
+    "title": "twofourxx",
     "description": "A FoundryVTT System for running 24XX games.",
-    "version": "0.0.1",
-    "author": "Michael Spellecacy",
+    "version": "This is auto replaced",
+    "authors": [
+        {
+            "name": "Michael Spellecacy",
+            "url": "https://github.com/mspellecacy",
+            "email": "mspellecacy@frakle.com",
+            "discord": "fikle"
+        }
+    ],
     "esmodules": ["./module/twofourxx.js"],
     "scripts": [],
     "compatibility": {
@@ -20,13 +28,10 @@
             "name": "English",
             "path": "lang/en.json",
             "flags": {}
-        },
-        {
-            "lang": "pl",
-            "name": "Polski",
-            "path": "lang/pl.json",
-            "flags": {}
         }
-    ]
+    ],
+    "url": "This is auto replaced",
+    "manifest": "This is auto replaced",
+    "download": "This is auto replaced"
 }
 
