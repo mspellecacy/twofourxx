@@ -35,9 +35,8 @@ export class SimpleActorSheet extends ActorSheet {
         context.flags = actorData.flags;
 
         // Add roll data for TinyMCE editors.
-        context.rollData = context.actor.getRollData();
+        // context.rollData = context.actor.getRollData();
 
-        console.log({context: context});
         return context;
     }
 
@@ -60,18 +59,32 @@ export class SimpleActorSheet extends ActorSheet {
      * Listen for roll buttons on items.
      * @param {MouseEvent} event    The originating left click event
      */
-    _onSkillRoll(event) {
+    async _onSkillRoll(event) {
         let button = $(event.currentTarget);
         const li = button.parent(".item");
-        const dice_select = li.children('#'+li[0].id + '_dice')
-        const dice_value = '1'+dice_select[0].options[dice_select[0].selectedIndex].value;
-        const skill_name = li.children('#'+li[0].id + '_name')[0].value;
+        const dice_select = li.children('#' + li[0].id + '_dice')
+        const dice_value = '1' + dice_select[0].options[dice_select[0].selectedIndex].value;
+        const skill_name = li.children('#' + li[0].id + '_name')[0].value;
         let r = new Roll(dice_value, this.actor.getRollData());
+        await r.evaluate();
+
+        // 24XX is very simple, regardless of dice used:
+        // 1-2 Disaster
+        // 3-4 Setback
+        // 5+  Success
+        let outcome = "disaster";
+        if (r.total <= 2) {
+            outcome = "disaster";
+        } else if (r.total <= 4) {
+            outcome = "setback";
+        } else { // >5
+            outcome = "success";
+        }
 
         return r.toMessage({
             user: game.user.id,
-            speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-            flavor: `<h2>${dice_value}</h2><h3>${skill_name}</h3>`
+            speaker: ChatMessage.getSpeaker({actor: this.actor}),
+            flavor: `<span class="outcome ${outcome}"><h2 class="dice-value">${dice_value}</h2><h3>${skill_name}</h3></span>`
         });
     }
 

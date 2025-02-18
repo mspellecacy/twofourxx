@@ -2,6 +2,57 @@
   font-family: "Chintzy";
   src: url("/systems/twofourxx/assets/fonts/chintzy_cpu_brk/chintzy.ttf") format("truetype");
 }
+#chat-log > li {
+  margin-bottom: 5px;
+  border: thick dashed #610000;
+  background: url("/systems/twofourxx/assets/images/lattice_wave4.webp");
+  background-size: cover;
+}
+#chat-log > li header > span.flavor-text {
+  color: white;
+}
+#chat-log > li header > span.flavor-text .success:before {
+  font-family: "Chintzy";
+  margin: 5px;
+  animation: tilt-shaking 1.25s linear 2, zoom-in-zoom-out 1.25s ease 2;
+  letter-spacing: 0.2rem;
+  display: flex;
+  justify-content: center;
+  font-size: 2em;
+  font-weight: bold;
+  content: "SUCCESS";
+  color: green;
+}
+#chat-log > li header > span.flavor-text .setback:before {
+  font-family: "Chintzy";
+  margin: 5px;
+  letter-spacing: 0.2rem;
+  display: flex;
+  justify-content: center;
+  font-size: 2em;
+  font-weight: bold;
+  content: "SETBACK";
+  color: gold;
+}
+#chat-log > li header > span.flavor-text .disaster:before {
+  font-family: "Chintzy";
+  margin: 5px;
+  letter-spacing: 0.2rem;
+  display: flex;
+  justify-content: center;
+  font-size: 2em;
+  font-weight: bold;
+  content: "DISASTER";
+  color: red;
+}
+#chat-log > li > .message-header {
+  font-weight: bold;
+  font-size: 1.5em;
+  color: white;
+}
+#chat-log > li > .message-content {
+  color: white;
+}
 :root {
   --size: 20px;
 }
@@ -68,26 +119,6 @@
   align-items: center;
   height: 100%;
   background-color: #000000;
-}
-@media (prefers-reduced-motion: reduce) {
-  .twofourxx * {
-    animation: none !important;
-    transition-duration: 0.001s !important;
-  }
-}
-@keyframes background-move {
-  0% {
-    background-position: 0 0, 0 0;
-  }
-  100% {
-    background-position: 100vw 0, 0 0;
-    background-position: unquote('max(100vw, 40em)') 0, 0 0;
-  }
-}
-@keyframes flicker {
-  to {
-    mask-position: 50% 50%, 0 50%;
-  }
 }
 .twofourxx .sheet-header {
   flex: 0 0 auto;
@@ -469,6 +500,17 @@
     transform: rotate(0deg);
   }
 }
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
 .twofourxx.sheet.actor {
   max-width: 800px;
   min-width: 800px;
@@ -477,10 +519,6 @@
 .twofourxx.sheet.item {
   min-width: 460px;
   min-height: 400px;
-}
-.custom-dropdown {
-  position: relative;
-  width: 200px;
 }
 .shape {
   --primary: red;

@@ -3,6 +3,71 @@
   src: url("/systems/twofourxx/assets/fonts/chintzy_cpu_brk/chintzy.ttf") format("truetype");
 }
 
+#chat-log > li {
+  margin-bottom: 5px;
+  border: thick dashed #610000;
+  background: url("/systems/twofourxx/assets/images/lattice_wave4.webp");
+  background-size: cover;
+}
+
+#chat-log > li header > span.flavor-text {
+  color: white;
+
+  .success:before {
+    font-family: "Chintzy";
+    margin: 5px;
+    animation: tilt-shaking 1.25s linear 2, zoom-in-zoom-out 1.25s ease 2;
+    letter-spacing: .2rem;
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+    font-weight: bold;
+    content: "SUCCESS";
+    color: green;
+  }
+
+  .setback:before {
+    font-family: "Chintzy";
+    margin: 5px;
+    letter-spacing: .2rem;
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+    font-weight: bold;
+    content: "SETBACK";
+    color: gold;
+  }
+
+  .disaster:before {
+    font-family: "Chintzy";
+    margin: 5px;
+    letter-spacing: .2rem;
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+    font-weight: bold;
+    content: "DISASTER";
+    color: red;
+  }
+}
+
+#chat-log > li > .message-header {
+  font-weight: bold;
+  font-size: 1.5em;
+  color: white;
+}
+
+#chat-log > li > .message-content {
+  color: white;
+
+  .dice-roll {
+  }
+
+  .dice-result {
+  }
+}
+
+//li .chat-message {}
 :root {
   --size: 20px;
 }
@@ -45,7 +110,6 @@
       font-size: 1.25rem;
       line-height: 1;
       outline: none;
-      // height calc line-height + (vertical-padding * 2) + (vertical-border * 2)
       height: calc(1em + 1.6em + 0.5em);
       width: 100%;
       padding: 0.8em 1em;
@@ -54,18 +118,8 @@
       linear-gradient(120deg, #610000 0%, #271d5c 50%, #9f0 100%);
       background-origin: border-box;
       background-clip: padding-box, border-box;
-      //border-radius: 1.8em;
       background-size: 200% 100%;
       transition: background-position 0.8s ease-out;
-
-      //&:hover {
-      //  background-position: 100% 0;
-      //}
-
-      //&:focus {
-      //  outline: 2px dashed #ca2800;
-      //  outline-offset: 0.25em;
-      //}
     }
   }
 
@@ -77,8 +131,6 @@
   }
 
   form {
-    //background: linear-gradient(100deg, #402, #006);
-    //background: hsl(0 0% 6%);
     padding: 1.00em;
     min-height: 100vh;
     display: flex;
@@ -86,34 +138,6 @@
     align-items: center;
     height: 100%;
     background-color: #000000;
-    //background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 460 55'%3E%3Cg fill='none' fill-rule='evenodd' stroke='%23fff' stroke-width='7' opacity='.1'%3E%3Cpath d='M-345 34.5s57.5-13.8 115-13.8 115 13.8 115 13.8S-57.5 48.3 0 48.3s115-13.8 115-13.8 57.5-13.8 115-13.8 115 13.8 115 13.8 57.5 13.8 115 13.8 115-13.8 115-13.8'/%3E%3Cpath d='M-345 20.7s57.5-13.8 115-13.8 115 13.8 115 13.8S-57.5 34.5 0 34.5s115-13.8 115-13.8S172.5 6.9 230 6.9s115 13.8 115 13.8 57.5 13.8 115 13.8 115-13.8 115-13.8m-920 27.6s57.5-13.8 115-13.8 115 13.8 115 13.8S-57.5 62.1 0 62.1s115-13.8 115-13.8 57.5-13.8 115-13.8 115 13.8 115 13.8 57.5 13.8 115 13.8 115-13.8 115-13.8'/%3E%3Cpath d='M-345 6.9s57.5-13.8 115-13.8S-115 6.9-115 6.9-57.5 20.7 0 20.7 115 6.9 115 6.9 172.5-6.9 230-6.9 345 6.9 345 6.9s57.5 13.8 115 13.8S575 6.9 575 6.9'/%3E%3Cpath d='M-345-6.9s57.5-13.8 115-13.8S-115-6.9-115-6.9-57.5 6.9 0 6.9 115-6.9 115-6.9s57.5-13.8 115-13.8S345-6.9 345-6.9 402.5 6.9 460 6.9 575-6.9 575-6.9m-920 69s57.5-13.8 115-13.8 115 13.8 115 13.8S-57.5 75.9 0 75.9s115-13.8 115-13.8 57.5-13.8 115-13.8 115 13.8 115 13.8 57.5 13.8 115 13.8 115-13.8 115-13.8'/%3E%3C/g%3E%3C/svg%3E%0A"),
-    //linear-gradient(45deg, #610000, #006);
-    //background-position: 50% 50%;
-    //animation: background-move 10s linear infinite;
-    //background-size: 100vw auto, 100% 100%;
-    //background-size: unquote('max(100vw, 30em)') auto, 100% 100%;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation: none !important;
-      transition-duration: 0.001s !important;
-    }
-  }
-  @keyframes background-move {
-    0% {
-      background-position: 0 0, 0 0;
-    }
-    100% {
-      background-position: 100vw 0, 0 0;
-      background-position: unquote('max(100vw, 40em)') 0, 0 0;
-    }
-  }
-
-  @keyframes flicker {
-    to {
-      mask-position: 50% 50%, 0 50%;
-    }
   }
 
   .sheet-header {
@@ -458,6 +482,7 @@
 .skill-item option {
   background-color: #610000;
 }
+
 .skill-item select {
   margin-left: 8px;
   margin-right: 5px;
@@ -476,19 +501,20 @@
 }
 
 .skill-item input[type="checkbox"] {
-    appearance: none;
-    //background-color: #ff0000;
-    //margin-top: 10px;
-    color: #610000;
-    width: 1.5em;
-    height: 1.5em;
-    border: 1.5em solid currentColor;
-    border-radius: 0.15em;
-    transform: translateY(-0.075em);
-    vertical-align: center;
-    display: grid;
-    place-content: center;
+  appearance: none;
+  //background-color: #ff0000;
+  //margin-top: 10px;
+  color: #610000;
+  width: 1.5em;
+  height: 1.5em;
+  border: 1.5em solid currentColor;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  vertical-align: center;
+  display: grid;
+  place-content: center;
 }
+
 .skill-item input[type="checkbox"]::before {
   --form-control-color: white;
   content: "";
@@ -505,25 +531,18 @@
   color: #610000;
   transform: scale(1);
   transform-origin: center;
-  //clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-  clip-path: polygon(
-          15% 0%, 50% 35%, 85% 0%,
-          100% 15%, 65% 50%, 100% 85%,
-          85% 100%, 50% 65%, 15% 100%,
-          0% 85%, 35% 50%, 0% 15%
-  );
-  //background: url("data:image/svg+xml,%3Csvg%20width%3D%2245%22%20height%3D%2245%22%20viewbox%3D%220%200%2095%2095%22%3E%3Crect%20x%3D%2230%22%20y%3D%2220%22%20width%3D%2250%22%20height%3D%2250%22%20stroke%3D%22black%22%20fill%3D%22none%22%20%2F%3E%3Cg%20transform%3D%22translate(0%2C-952.36222)%22%3E%3Cpath%20d%3D%22m%2056%2C963%20c%20-102%2C122%206%2C9%207%2C9%2017%2C-5%20-66%2C69%20-38%2C52%20122%2C-77%20-7%2C14%2018%2C4%2029%2C-11%2045%2C-43%2023%2C-4%20%22%20stroke%3D%22black%22%20stroke-width%3D%223%22%20fill%3D%22none%22%20class%3D%22path1%22%20%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  clip-path: polygon(15% 0%, 50% 35%, 85% 0%,
+  100% 15%, 65% 50%, 100% 85%,
+  85% 100%, 50% 65%, 15% 100%,
+  0% 85%, 35% 50%, 0% 15%);
 }
-
 
 .skill-item input[type="text"] {
   font-family: "Chintzy";
   color: #fff;
   font-size: 1.25rem;
   line-height: 1;
-  //border-style: none;
   outline: #610000;
-  // height calc line-height + (vertical-padding * 2) + (vertical-border * 2)
   height: calc(.15em + 1.6em + 0.5em);
   width: 100%;
   padding: 0.8em 1em;
@@ -579,12 +598,35 @@
   animation: tilt-shaking .25s linear 2;
 
 }
+
 @keyframes tilt-shaking {
-  0% { transform: rotate(0deg); }
-  25% { transform: rotate(5deg); }
-  50% { transform: rotate(0eg); }
-  75% { transform: rotate(-5deg); }
-  100% { transform: rotate(0deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(0eg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
 }
 
 .twofourxx.sheet.actor {
@@ -598,12 +640,6 @@
   min-width: 460px;
   min-height: 400px;
 }
-
-.custom-dropdown {
-  position: relative;
-  width: 200px;
-}
-
 
 .shape {
   --primary: red;
@@ -619,17 +655,20 @@
 
 @keyframes morph {
   0% {
-    border-radius:  60% 40% 30% 70% / 60% 30% 70% 40%;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     background: linear-gradient(45deg, var(--primary) 0%, var(--secondary) 100%);
   }
 
   50% {
-    border-radius:  30% 60% 70% 40% / 50% 60% 30% 60%;
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
     background: linear-gradient(45deg, var(--third) 0%, var(--secondary) 100%);
   }
 
   100% {
-    border-radius:  60% 40% 30% 70% / 60% 30% 70% 40%;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     background: linear-gradient(45deg, var(--primary) 0%, var(--secondary) 100%);
   }
 }
+
+
+

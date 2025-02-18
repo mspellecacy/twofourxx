@@ -30,12 +30,5 @@ export class SimpleActor extends Actor {
     prepareDerivedData() {
         const actorData = this;
         const systemData = actorData.system;
-        console.log({actorData:actorData});
-        //const flags = actorData.flags.boilerplate || {};
-
-        // Make separate methods for each Actor type (character, npc, etc.) to keep
-        // things organized.
-        // this._prepareCharacterData(actorData);
-        // this._prepareNpcData(actorData);
     }
 }
