@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "Chintzy";
-  src: url("/systems/twofourxx/assets/fonts/chintzy_cpu_brk/chintzy.ttf") format("truetype");
+  font-family: "Powell Antique";
+  src: url("/systems/twofourxx/assets/fonts/powell_antique/PowellAntique.ttf") format("truetype");
 }
 #chat-log > li {
   margin-bottom: 5px;
@@ -12,7 +12,7 @@
   color: white;
 }
 #chat-log > li header > span.flavor-text .success:before {
-  font-family: "Chintzy";
+  font-family: "Powell Antique";
   margin: 5px;
   animation: tilt-shaking 1.25s linear 2, zoom-in-zoom-out 1.25s ease 2;
   letter-spacing: 0.2rem;
@@ -24,7 +24,7 @@
   color: green;
 }
 #chat-log > li header > span.flavor-text .setback:before {
-  font-family: "Chintzy";
+  font-family: "Powell Antique";
   margin: 5px;
   letter-spacing: 0.2rem;
   display: flex;
@@ -35,7 +35,7 @@
   color: gold;
 }
 #chat-log > li header > span.flavor-text .disaster:before {
-  font-family: "Chintzy";
+  font-family: "Powell Antique";
   margin: 5px;
   letter-spacing: 0.2rem;
   display: flex;
@@ -90,7 +90,7 @@
   cursor: pointer;
 }
 .twofourxx .input-group__input {
-  font-family: "Chintzy";
+  font-family: "Powell Antique";
   color: #fff;
   font-size: 1.25rem;
   line-height: 1;
@@ -434,7 +434,7 @@
   clip-path: polygon(15% 0%, 50% 35%, 85% 0%, 100% 15%, 65% 50%, 100% 85%, 85% 100%, 50% 65%, 15% 100%, 0% 85%, 35% 50%, 0% 15%);
 }
 .skill-item input[type="text"] {
-  font-family: "Chintzy";
+  font-family: "Powell Antique";
   color: #fff;
   font-size: 1.25rem;
   line-height: 1;
@@ -450,7 +450,7 @@
   transition: background-position 0.8s ease-out;
 }
 .skill-item textarea {
-  font-family: "Chintzy";
+  font-family: "Powell Antique";
   color: white;
   outline: #610000;
   font-size: 1.25rem;
