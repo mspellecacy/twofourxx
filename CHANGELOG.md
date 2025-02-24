@@ -1,4 +1,8 @@
 # Changelog
+
+## v0.0.6
+- Adding proper system attribution to 24XX's author Jason Tocci.
+
 ## v0.0.5
 - Change of primary font after user feedback.
 - Re-aligning release versions. 
