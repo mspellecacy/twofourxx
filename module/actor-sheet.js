@@ -9,8 +9,6 @@ export class SimpleActorSheet extends ActorSheet {
         return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["twofourxx", "sheet", "actor"],
             template: "systems/twofourxx/templates/actor-sheet.html",
-            width: 800,
-            height: 820,
             tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
             scrollY: [".biography", ".items", ".attributes"],
             dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]

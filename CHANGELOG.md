@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.0.7
+- Changed the CSS to allow for character window resizing. 
+
 ## v0.0.6
 - Adding proper system attribution to 24XX's author Jason Tocci.
 

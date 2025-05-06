@@ -365,7 +365,7 @@
 }
 .skills-container {
   display: flex;
-  flex: 0 0 auto;
+  flex: 1 0 auto;
   flex-direction: column;
 }
 .skills-label {
@@ -397,7 +397,6 @@
   background-color: #610000;
   font-family: 'dicefont';
   font-size: 1.65em;
-  width: 100px;
   height: 1.8em;
   line-height: 2em;
   flex-grow: 1;
@@ -510,11 +509,6 @@
   100% {
     transform: scale(1, 1);
   }
-}
-.twofourxx.sheet.actor {
-  max-width: 800px;
-  min-width: 800px;
-  min-height: 820px;
 }
 .twofourxx.sheet.item {
   min-width: 460px;

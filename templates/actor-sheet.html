@@ -4,48 +4,32 @@
 
     {{!-- Sheet Header --}}
     <header class="sheet-header" style="align-items: flex-start;">
-
         <div class="header-fields">
             <div class="profile-fields">
                 <img class="shape" src="{{data.img}}" data-edit="img" title="{{data.name}}" alt="Character Portrait"/>
 
                 <div class="profile-input-fields">
-<!--                    <h1>PROFILE:</h1>-->
-
                     <div class="input-group">
                         <label class="input-group__label" for="name">{{localize "TWOFOURXX.CharacterNameLabel"}}</label>
-                        <input class="input-group__input" id="name" name="name" type="text" value="{{data.name}}" placeholder='{{localize "TWOFOURXX.CharacterNamePlaceHolder"}}' />
+                        <input class="input-group__input" id="name" name="name" type="text" value="{{data.name}}" placeholder="{{localize 'TWOFOURXX.CharacterNamePlaceHolder'}}">
                     </div>
                     <div class="input-group">
                         <label class="input-group__label" for="origin">{{localize "TWOFOURXX.CharacterOriginLabel"}}</label>
-                        <input class="input-group__input" id="origin" name="system.origin" type="text" value="{{data.system.origin}}" placeholder='{{localize "TWOFOURXX.CharacterOriginPlaceHolder"}}' />
+                        <input class="input-group__input" id="origin" name="system.origin" type="text" value="{{data.system.origin}}" placeholder="{{localize 'TWOFOURXX.CharacterOriginPlaceHolder'}}">
                     </div>
-<!--                </div>-->
-<!--                <div class="profile-input-fields">-->
                     <div class="input-group">
                         <label class="input-group__label" for="specialty">{{localize "TWOFOURXX.CharacterSpecialtyLabel"}}</label>
-                        <input class="input-group__input" id="specialty" name="system.specialty" type="text" value="{{data.system.specialty}}" placeholder='{{localize "TWOFOURXX.CharacterSpecialtyPlaceHolder"}}' />
+                        <input class="input-group__input" id="specialty" name="system.specialty" type="text" value="{{data.system.specialty}}" placeholder="{{localize 'TWOFOURXX.CharacterSpecialtyPlaceHolder'}}">
                     </div>
                     <div class="input-group">
                         <label class="input-group__label" for="cash">{{localize "TWOFOURXX.CharacterCashLabel"}}</label>
-                        <input class="input-group__input" id="cash" name="system.cash" type="text" value="{{data.system.cash}}" placeholder='{{localize "TWOFOURXX.CharacterCashPlaceHolder"}}' />
+                        <input class="input-group__input" id="cash" name="system.cash" type="text" value="{{data.system.cash}}" placeholder="{{localize 'TWOFOURXX.CharacterCashPlaceHolder'}}">
                     </div>
                 </div>
             </div>
-            <!--
-            <div class="resource">
-                <input type="number" name="system.health.value" value="{{systemData.health.value}}"/>
-                <span> / </span>
-                <input type="number" name="system.health.max" value="{{systemData.health.max}}"/>
-            </div>
-            <div class="resource">
-                <input type="number" name="system.power.value" value="{{systemData.power.value}}"/>
-                <span> / </span>
-                <input type="number" name="system.power.max" value="{{systemData.power.max}}"/>
-            </div>
-            -->
         </div>
     </header>
+
     {{!-- Sheet Body --}}
     <section class="sheet-body">
         <div class="skills-container">
@@ -67,7 +51,7 @@
                     <option value="d6" {{select data.system.skills.skill_2_dice 'd6'}}>&#xf136; D6</option>
                     <option value="d8" {{select data.system.skills.skill_2_dice 'd8'}}>&#xf13e; D8</option>
                     <option value="d10" {{select data.system.skills.skill_2_dice 'd10'}}>&#xf100; D10</option>
-                    <option value="d12" {{select data.system.skills.skill_2_dice 'd12'}}>&#xf10e; D12</option>
+                    <option value="d12" {{select data.system.skills.skill_2_dice 'd12'}}>&#xf10e; D12</option
                 </select>
                 <input id="skill_2_name" type="text" name="system.skills.skill_2_name" value="{{data.system.skills.skill_2_name}}">
                 <button class="skill-button rollable"><i class="fa-solid fa-play"></i></button>
@@ -102,11 +86,11 @@
                     <option value="d10" {{select data.system.skills.skill_5_dice 'd10'}}>&#xf100; D10</option>
                     <option value="d12" {{select data.system.skills.skill_5_dice 'd12'}}>&#xf10e; D12</option>
                 </select>
-                <input id="skill_5_name" type="text"  name="system.skills.skill_5_name" value="{{data.system.skills.skill_5_name}}">
+                <input id="skill_5_name" type="text" name="system.skills.skill_5_name" value="{{data.system.skills.skill_5_name}}">
                 <button class="skill-button rollable"><i class="fa-solid fa-play"></i></button>
             </div>
             <div class="skill-item item" id="skill_6">
-                <select id="skill_6_dice"  name="system.skills.skill_6_dice">
+                <select id="skill_6_dice" name="system.skills.skill_6_dice">
                     <option value="d4" {{{select data.system.skills.skill_6_dice 'd4'}}}>&#xf130; D4</option>
                     <option value="d6" {{select data.system.skills.skill_6_dice 'd6'}}>&#xf136; D6</option>
                     <option value="d8" {{select data.system.skills.skill_6_dice 'd8'}}>&#xf13e; D8</option>
@@ -116,8 +100,9 @@
                 <input id="skill_6_name" type="text" name="system.skills.skill_6_name" value="{{data.system.skills.skill_6_name}}">
                 <button class="skill-button rollable"><i class="fa-solid fa-play"></i></button>
             </div>
+
             <label class="skills-label">HINDRANCES:</label>
-            <div class="skill-item" >
+            <div class="skill-item">
                 <input type="text" name="system.hindrance_1" id="hindrance_1" value="{{data.system.hindrance_1}}">
             </div>
             <div class="skill-item">
@@ -130,9 +115,10 @@
                 <input type="text" name="system.hindrance_4" id="hindrance_4" value="{{data.system.hindrance_4}}">
             </div>
         </div>
+
         <div class="skills-container">
             <label class="skills-label">GEAR & UPGRADES:</label>
-            <div class="skill-item" >
+            <div class="skill-item">
                 <input type="checkbox" name="system.gu_1_checkbox" id="gu_1_checkbox" {{checked data.system.gu_1_checkbox}}>
                 <input type="text" name="system.gu_1_name" id="gu_1_name" value="{{data.system.gu_1_name}}">
             </div>
@@ -156,12 +142,11 @@
                 <input type="checkbox" name="system.gu_6_checkbox" id="gu_6_checkbox" {{checked data.system.gu_6_checkbox}}>
                 <input type="text" name="system.gu_6_name" id="gu_6_name" value="{{data.system.gu_6_name}}">
             </div>
+
             <label class="skills-label">NOTES:</label>
-            <div class="skill-item" >
+            <div class="skill-item">
                 <textarea name="system.notes" id="notes">{{data.system.notes}}</textarea>
             </div>
         </div>
-
     </section>
-
 </form>
